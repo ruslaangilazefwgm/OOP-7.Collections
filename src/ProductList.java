@@ -1,44 +1,29 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class ProductList {
-    private final Set<Product> products = new HashSet<>();
+    private final Map<Product, Integer> products = new HashMap<>();
 
-    public void addProduct(Product product) {
-        if (products.contains(product)) {
+    public void addProduct(Product product, Integer count) {
+        if (products.containsKey(product)) {
             throw new AddException("Продукт уже есть");
         } else {
-            this.products.add(product);
+            this.products.put(product, count);
         }
     }
 
-    public void checkProduct(String name) {
-        for (Product product: this.products) {
-            if (product.getName().equals(name)) {
+    public void checkProduct(Product product) {
+            if (products.containsKey(product)) {
                 product.setChecked();
-                break;
             }
-        }
+
     }
 
-    public void removeProduct(String name) {
-        Iterator<Product> productsIterator = this.products.iterator();
-        while (productsIterator.hasNext()) {
-            if (productsIterator.next().getName().equals(name)) {
-                productsIterator.remove();
-                break;
-            }
-        }
+    public void removeProduct(Product product) {
+        products.remove(product);
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Список продкутов: ").append('\n');
-        for (Product product : this.products) {
-            stringBuilder.append(product).append('\n');
-        }
-        return stringBuilder.toString();
+            return String.format("Продукты: " + products);
     }
 }

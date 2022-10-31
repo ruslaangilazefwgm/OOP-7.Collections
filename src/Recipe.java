@@ -1,13 +1,14 @@
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
 public class Recipe {
     private final String name;
     private int summ;
-    private final Set<Product> products;
+    private final Map<Product,Integer> products;
 
-    public Recipe(String name, int summ, Set<Product> products) {
+    public Recipe(String name, int summ, Map<Product, Integer> products) {
         if (name == null || name.isEmpty() || summ < 0 || products.size() == 0) {
             throw new IllegalArgumentException("Не заполнено поле");
         }else {
@@ -23,13 +24,13 @@ public class Recipe {
 
     public int getSumm() {
         summ = 0;
-        for (Product product: products) {
-            summ += product.getPrice();
+        for (Product product : products.keySet()) {
+            summ *= product.getPrice();
         }
         return summ;
     }
 
-    public Set<Product> getProducts() {
+    public Map<Product, Integer> getProducts() {
         return products;
     }
 

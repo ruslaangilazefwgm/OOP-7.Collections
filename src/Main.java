@@ -7,13 +7,13 @@ public class Main {
         Product kivi = new Product("Киви", 24, 5);
 
         ProductList productList = new ProductList();
-        productList.addProduct(banana);
-        productList.addProduct(apple);
-        productList.addProduct(kivi);
+        productList.addProduct(banana,1);
+        productList.addProduct(apple,2);
+        productList.addProduct(kivi,3);
         System.out.println(productList);
 
-        Recipe r1 = new Recipe("R1", 104, Set.of(banana, apple));
-        Recipe r2 = new Recipe("R1", 104, Set.of(banana, apple));
+        Recipe r1 = new Recipe("R1", 104, Map.of(banana, 1));
+        Recipe r2 = new Recipe("R1", 104, Map.of(banana, 2));
 
         RecipeList recipeList = new RecipeList();
         recipeList.addRecipe(r1);
